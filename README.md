@@ -1,4 +1,4 @@
-# Azure Container Apps Private Preview for UDR + Az Firewall + Application Gateway example
+# Azure Container Apps Private Preview example for UDR + Az Firewall + Application Gateway
 
 ### Pre-requisites
 - Azure subscription (whitelisted for you subscription)
