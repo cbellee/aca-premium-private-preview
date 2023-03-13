@@ -2,6 +2,7 @@ param skuName string = 'Standard'
 param umidResourceId string
 param name string
 param location string
+param appGatewayIpName string
 param gatewaySku object = {
   name: 'WAF_v2'
   tier: 'WAF_v2'
@@ -20,11 +21,8 @@ param requestTimeOut int = 180
 param frontendHostName string
 param backendIpAddressOrFqdn string
 
-var suffix = uniqueString(resourceGroup().id)
-var appGwyPipName = '${name}-pip-${suffix}'
-
 resource appGwyVip 'Microsoft.Network/publicIPAddresses@2021-02-01' = {
-  name: appGwyPipName
+  name: appGatewayIpName
   location: location
   sku: {
     name: skuName

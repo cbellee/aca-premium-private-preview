@@ -24,8 +24,10 @@ var suffix = uniqueString(resourceGroup().id)
 var virtualNetworkName = 'vnet-${suffix}'
 var workspaceName = 'workspace-${suffix}'
 var firewallName = 'fw-${suffix}'
+var firewallPublicIpName = 'fw-pip-${suffix}'
 var udrName = 'udr-${suffix}'
 var appGatewayName = 'ag-${suffix}'
+var appGatewayPipName = 'ag-pip-${suffix}'
 var appGatewayUmidName = 'ag-umid-${suffix}'
 var backendFqdn = '${container_app.name}.${aca_environment.outputs.defaultDomain}'
 
@@ -215,6 +217,7 @@ module private_dns_record_apex 'modules/dnsRecord.bicep' = {
 module azure_firewall 'modules/azureFirewall.bicep' = {
   name: 'azure-firewall-deployment'
   params: {
+    publicIpName: firewallPublicIpName
     location: location
     name: firewallName
     workspaceName: la_workspace.name
@@ -225,8 +228,8 @@ module azure_firewall 'modules/azureFirewall.bicep' = {
 module app_gateway 'modules/applicationGateway.bicep' = {
   name: 'app-gateway-deployment'
   params: {
-    // backendHostName: aca_environment.outputs.defaultDomain
     backendIpAddressOrFqdn: backendFqdn
+    appGatewayIpName: appGatewayPipName
     frontendHostName: 'aca-test.${domain}'
     location: location
     name: appGatewayName

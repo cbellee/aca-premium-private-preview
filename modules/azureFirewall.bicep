@@ -3,13 +3,13 @@ param name string
 param subnetId string
 param skuName string = 'Standard'
 param workspaceName string
+param publicIpName string
 param firewallSku object = {
   name: 'AZFW_VNet'
   tier: 'Standard'
 }
 
 var suffix = uniqueString(resourceGroup().id)
-var pipName = '${name}-pip-${suffix}'
 var policyName = 'policy-${suffix}'
 
 resource workspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' existing = {
@@ -17,7 +17,7 @@ resource workspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' existin
 }
 
 resource azure_firewall_pip 'Microsoft.Network/publicIPAddresses@2021-02-01' = {
-  name: pipName
+  name: publicIpName
   location: location
   sku: {
     name: skuName
@@ -78,14 +78,14 @@ resource azure_firewall_rules 'Microsoft.Network/firewallPolicies/ruleCollection
                 protocolType: 'Http'
                 port: 80
               }
-           /* {
+              {
                 protocolType: 'Https'
                 port: 5671
               }
               {
                 protocolType: 'Https'
                 port: 5672
-              } */
+              }
             ]
           }
         ]
