@@ -3,7 +3,7 @@ param containerAppName string = 'aca-app'
 param imageName string
 param domain string
 param keyVaultName string
-param publicDnsZoneResourceGroup string = 'external-dns-zones-rg'
+param publicDnsZoneResourceGroup string
 
 @secure()
 param tlsCertSecretId string

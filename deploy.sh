@@ -1,9 +1,10 @@
 resourceGroup='aca-udr-rg'
 location="northcentralus"
 image='mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
-DOMAIN_NAME='kainiindustries.net'
+DOMAIN_NAME='kainiindustries.net' # replace with your public domain name
 PUBLIC_PFX_CERT_FILE="./certs/star.${DOMAIN_NAME}.bundle.pfx"
 PUBLIC_PFX_CERT_NAME='public-certificate-pfx'
+PUBLIC_DNS_ZONE_RESOURCE_GROUP='external-dns-zones-rg'
 
 # load vars from /.env file. 
 # the following env vars should be defined within the file
@@ -41,4 +42,5 @@ az deployment group create \
 --parameters location=$location \
 --parameters tlsCertSecretId="$PUBLIC_CERT_SID" \
 --parameters domain=$DOMAIN_NAME \
---parameters keyVaultName=$KV_NAME
+--parameters keyVaultName=$KV_NAME \
+--parameters publicDnsZoneResourceGroup=$PUBLIC_DNS_ZONE_RESOURCE_GROUP
