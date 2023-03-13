@@ -8,8 +8,8 @@
 
 ### Deployment
 - Create /.env file at the repo root containing the following environment variables
-  - PUBLIC_CERT_PASSWORD="<your PFX certificate secret>"
-  - ADMIN_GROUP_OBJECT_ID="<your AAD AKS admin group name>"
+  - PUBLIC_CERT_PASSWORD='your PFX certificate secret'
+  - ADMIN_GROUP_OBJECT_ID='your AAD AKS admin group name'
 - Create a directory named 'certs' in the repo root 
   - add the TLS wild-card PFX certificate to the /certs directory
 - Change current working directory to the repo root
