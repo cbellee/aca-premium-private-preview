@@ -1,4 +1,4 @@
-resourceGroup='aca-udr-azfw-appgwy-rg'
+resourceGroup='aca-azfw-appgwy-rg'
 location="northcentralus"
 image='mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
 DOMAIN_NAME='kainiindustries.net' # replace with your public domain name
