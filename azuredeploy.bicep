@@ -111,9 +111,9 @@ resource virtual_network 'Microsoft.Network/virtualNetworks@2022-07-01' = {
           addressPrefix: '192.168.0.0/21'
           privateEndpointNetworkPolicies: 'Disabled'
           privateLinkServiceNetworkPolicies: 'Enabled'
-          routeTable: {
+          /* routeTable: {
             id: aca_udr.id
-          }
+          } */
           delegations: [
             {
               name: 'Microsoft.App.testClients'
@@ -161,7 +161,6 @@ resource container_app 'Microsoft.App/containerapps@2022-11-01-preview' = {
   kind: 'containerapps'
   location: location
   properties: {
-    workloadProfileType: 'GP3'
     configuration: {
       secrets: []
       registries: []
@@ -179,6 +178,7 @@ resource container_app 'Microsoft.App/containerapps@2022-11-01-preview' = {
       }
     }
     managedEnvironmentId: aca_environment.outputs.id
+    workloadProfileName: 'co-F16'
   }
 }
 

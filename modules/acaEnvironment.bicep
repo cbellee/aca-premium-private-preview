@@ -5,14 +5,17 @@ param location string
 param environmentName string = 'aca-environment-${suffix}'
 param workloadProfiles array = [ {
     workloadProfileType: 'Consumption'
+    name: 'consumption'
   }
   {
-    workloadProfileType: 'GP3'
+    workloadProfileType: 'F16'
+    name: 'co-F16'
     minimumCount: 1
     maximumCount: 1
   }
   {
-    workloadProfileType: 'CO1'
+    workloadProfileType: 'E16'
+    name: 'mo-E16'
     minimumCount: 0
     maximumCount: 1
   }
@@ -38,6 +41,7 @@ resource aca_environment 'Microsoft.App/managedEnvironments@2022-11-01-preview' 
       }
     }
     workloadProfiles: workloadProfiles
+    zoneRedundant: false
   }
 }
 
