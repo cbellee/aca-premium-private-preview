@@ -69,6 +69,10 @@ resource azure_firewall_rules 'Microsoft.Network/firewallPolicies/ruleCollection
               '*.mcr.microsoft.com'
               '*.${environment().suffixes.storage}'
             ]
+            fqdnTags: [
+              'MicrosoftContainerRegistry'
+              'AzureFrontDoor.FirstParty'
+            ]
             protocols: [
               {
                 protocolType: 'Https'
