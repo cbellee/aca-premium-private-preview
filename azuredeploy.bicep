@@ -111,9 +111,9 @@ resource virtual_network 'Microsoft.Network/virtualNetworks@2022-07-01' = {
           addressPrefix: '192.168.0.0/21'
           privateEndpointNetworkPolicies: 'Disabled'
           privateLinkServiceNetworkPolicies: 'Enabled'
-          /* routeTable: {
+          routeTable: {
             id: aca_udr.id
-          } */
+          }
           delegations: [
             {
               name: 'Microsoft.App.testClients'
