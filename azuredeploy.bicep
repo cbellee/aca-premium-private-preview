@@ -4,6 +4,7 @@ param imageName string
 param domain string
 param keyVaultName string
 param publicDnsZoneResourceGroup string
+param dnsHostName string = 'aca-app'
 
 @secure()
 param tlsCertSecretId string
@@ -249,7 +250,7 @@ module app_gateway 'modules/applicationGateway.bicep' = {
   params: {
     backendIpAddressOrFqdn: backendFqdn
     appGatewayIpName: appGatewayPipName
-    frontendHostName: 'aca-test.${domain}'
+    frontendHostName: '${dnsHostName}.${domain}'
     location: location
     name: appGatewayName
     subnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', virtual_network.name, 'ApplicationGatewaySubnet')
@@ -265,6 +266,6 @@ module app_gateway_public_dns_record 'modules/publicDnsRecord.bicep' = {
   params: {
     zoneName: domain
     ipAddress: app_gateway.outputs.appGwyPublicIpAddress
-    recordName: 'aca-test'
+    recordName: dnsHostName
   }
 }
