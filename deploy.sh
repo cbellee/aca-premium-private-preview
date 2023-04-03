@@ -1,4 +1,4 @@
-RG_NAME='aca-azfw-appgwy-2-rg'
+RG_NAME='aca-azfw-appgwy-3-rg'
 LOCATION="northcentralus"
 IMAGE_TAG='mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
 DOMAIN_NAME='kainiindustries.net' # replace with your public domain name

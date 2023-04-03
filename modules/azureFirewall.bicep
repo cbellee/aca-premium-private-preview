@@ -82,14 +82,6 @@ resource azure_firewall_rules 'Microsoft.Network/firewallPolicies/ruleCollection
                 protocolType: 'Http'
                 port: 80
               }
-              {
-                protocolType: 'Https'
-                port: 5671
-              }
-              {
-                protocolType: 'Https'
-                port: 5672
-              }
             ]
           }
         ]

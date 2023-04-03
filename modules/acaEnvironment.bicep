@@ -3,23 +3,7 @@ param subnetId string
 param workspaceName string
 param location string
 param environmentName string = 'aca-environment-${suffix}'
-param workloadProfiles array = [ {
-    workloadProfileType: 'Consumption'
-    name: 'consumption'
-  }
-  {
-    workloadProfileType: 'F16'
-    name: 'co-F16'
-    minimumCount: 1
-    maximumCount: 1
-  }
-  {
-    workloadProfileType: 'E16'
-    name: 'mo-E16'
-    minimumCount: 0
-    maximumCount: 1
-  }
-]
+param workloadProfiles array
 
 resource workspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
   name: workspaceName

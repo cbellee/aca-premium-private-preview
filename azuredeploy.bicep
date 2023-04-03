@@ -20,6 +20,24 @@ param containers array = [
   }
 ]
 
+param workloadProfiles array = [ {
+    workloadProfileType: 'Consumption'
+    name: 'consumption'
+  }
+  {
+    workloadProfileType: 'F16'
+    name: 'co-F16'
+    minimumCount: 1
+    maximumCount: 1
+  }
+  {
+    workloadProfileType: 'E16'
+    name: 'mo-E16'
+    minimumCount: 0
+    maximumCount: 1
+  }
+]
+
 var suffix = uniqueString(resourceGroup().id)
 var virtualNetworkName = 'vnet-${suffix}'
 var workspaceName = 'workspace-${suffix}'
@@ -149,6 +167,7 @@ module aca_environment './modules/acaEnvironment.bicep' = {
     location: location
     subnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', virtualNetworkName, 'infra-subnet')
     workspaceName: la_workspace.name
+    workloadProfiles: workloadProfiles
   }
   dependsOn: [
     virtual_network
@@ -190,8 +209,8 @@ module private_dns_zone 'modules/privateDnsZone.bicep' = {
   }
 }
 
-module private_dns_record 'modules/dnsRecord.bicep' = {
-  name: 'private-dns-record-deployment'
+module private_dns_record_wildcard 'modules/dnsRecord.bicep' = {
+  name: 'private-dns-record-wildcard-deployment'
   params: {
     zoneName: aca_environment.outputs.defaultDomain
     recordName: '*'
@@ -202,8 +221,8 @@ module private_dns_record 'modules/dnsRecord.bicep' = {
   ]
 }
 
-module private_dns_record_apex 'modules/dnsRecord.bicep' = {
-  name: 'private-dns-record-apex-deployment'
+module private_dns_record_root 'modules/dnsRecord.bicep' = {
+  name: 'private-dns-record-root-deployment'
   params: {
     zoneName: aca_environment.outputs.defaultDomain
     recordName: '@'
