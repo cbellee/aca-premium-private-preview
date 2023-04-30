@@ -1,5 +1,5 @@
-RG_NAME='aca-private-preview-rg'
-LOCATION="northcentralus"
+RG_NAME='aca-workload-profile-rg'
+LOCATION="eastus"
 IMAGE_TAG='mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
 DOMAIN_NAME='kainiindustries.net' # replace with your public domain name
 PUBLIC_PFX_CERT_FILE="./certs/star.${DOMAIN_NAME}.bundle.pfx"
